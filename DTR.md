@@ -1,4 +1,4 @@
-Alt-H1 Project: Battleship
+# Project: Battleship
 
 Group Member Names: Cassie & Ben
 
