@@ -40,6 +40,7 @@ class Board
       "D3" => D3,
       "D4" => D4,
     }
+
   end
 
   def valid_coordinate?(coordinate)
@@ -58,14 +59,22 @@ class Board
       numbers << coordinate[1].split[0].to_s
     end
 
-    check_order(letters)
+    check_order(letters,ship)
   end
 
-  def check_order(value)
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  def check_order(value,ship)
+    alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-    new_variable = alphabet.find{|letter| letter == value[0]}
-    binding.pry
-    value.sort == value.to_a
+    alphabet_index = alphabet.index(value[0])
+    index_to_test = []
+    letters_to_test = []
+    ship.length.times do
+      index_to_test << alphabet_index
+      alphabet_index += 1
+    end
+    index_to_test.each do |letter|
+      letters_to_test << alphabet[letter]
+    end
+    letters_to_test == value
   end
 end
