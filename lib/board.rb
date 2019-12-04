@@ -48,12 +48,24 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    return true if ship.length == coordinates.count
-    #letter OR number changes NOT both
-    return true if
-    #the one that moves must be consecutive
-    #
-    false
+    return false if ship.length != coordinates.count
 
+    letters = []
+    numbers = []
+
+    coordinates.each do |coordinate|
+      letters << coordinate[0].split[0].to_s
+      numbers << coordinate[1].split[0].to_s
+    end
+
+    check_order(letters)
+  end
+
+  def check_order(value)
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    new_variable = alphabet.find{|letter| letter == value[0]}
+    binding.pry
+    value.sort == value.to_a
   end
 end
