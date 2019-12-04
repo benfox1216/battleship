@@ -18,11 +18,17 @@ class Cell
   end
 
   def fire_upon
-    ship.health -= 1
+    @ship.health -= 1
     @fired_upon = true
   end
 
   def fired_upon?
     @fired_upon
+  end
+
+  def render(has_ship = false)
+    return "S" if has_ship == true
+    return "M" if @fired_upon == true && has_ship == false
+    "."
   end
 end
