@@ -72,8 +72,8 @@ class Board
       index_to_test << alphabet_index
       alphabet_index += 1
     end
-    index_to_test.each do |index|
-      letters_to_test << alphabet[index]
+    index_to_test.each do |letter|
+      letters_to_test << alphabet[letter]
     end
     letters_to_test == value
   end
