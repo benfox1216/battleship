@@ -46,4 +46,14 @@ class Board
     return true if @cells.keys.include?(coordinate) == true
     false
   end
+
+  def valid_placement?(ship, coordinates)
+    return true if ship.length == coordinates.count
+    #letter OR number changes NOT both
+    return true if
+    #the one that moves must be consecutive
+    #
+    false
+
+  end
 end

@@ -58,7 +58,7 @@ class CellTest < Minitest::Test
     assert_equal "S", @cell_2.render(true)
   end
 
-  def test_a_hit_only_happens_if_a_ship_is_in_place
+  def test_a_hit_only_happens_if_a_ship_is_in_place_and_
     @cell_2.place_ship(@cruiser)
     assert_equal "S", @cell_2.render(true)
     @cell_2.fire_upon
