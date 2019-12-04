@@ -58,13 +58,18 @@ class CellTest < Minitest::Test
     assert_equal "S", @cell_2.render(true)
   end
 
-  def test_a_hit_only_happens_if_a_ship_is_in_place_and_ship_sinks_after_3_hits
-    skip
+  def test_a_hit_only_happens_if_a_ship_is_in_place_and_
     @cell_2.place_ship(@cruiser)
     assert_equal "S", @cell_2.render(true)
     @cell_2.fire_upon
     assert_equal "H", @cell_2.render
     assert_equal false, @cruiser.sunk?
+  end
+
+  def test_ship_sinks_after_3_hits
+    @cell_2.place_ship(@cruiser)
+    @cell_2.render(true)
+    @cell_2.fire_upon
     @cruiser.hit
     @cruiser.hit
     assert_equal true, @cruiser.sunk?
