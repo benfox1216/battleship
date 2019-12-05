@@ -89,4 +89,9 @@ class BoardTest < Minitest::Test
     assert_equal true, @board.check_alphabet(["A", "B", "C"], @cruiser)
     assert_equal false, @board.check_alphabet(["B", "A", "F"], @cruiser)
   end
+
+  def test_it_verifies_numbers_in_coordinates_are_ascending
+    assert_equal true, @board.check_numbers(["1", "2", "3"], @cruiser)
+    assert_equal false, @board.check_numbers(["2", "1", "5"], @cruiser)
+  end
 end
