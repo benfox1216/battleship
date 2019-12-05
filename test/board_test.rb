@@ -35,6 +35,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_validates_coordinates_are_consecutive
+    skip
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
     assert_equal false, @board.valid_placement?(@cruiser, ["A3", "A2", "A1"])
@@ -81,5 +82,11 @@ class BoardTest < Minitest::Test
     skip
     @board.place(@cruiser, ["A1", "A2", "A3"])
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
+  end
+
+  def test_it_verifies_letters_in_coordinates_are_ascending
+    skip
+    assert_equal true, @board.check_alphabet(["A", "B", "C"], @cruiser)
+    assert_equal false, @board.check_alphabet(["B", "A", "F"], @cruiser)
   end
 end
