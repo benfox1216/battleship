@@ -50,6 +50,9 @@ class Board
 
   def valid_placement?(ship, coordinates)
     return false if ship.length != coordinates.count
+    coordinates.each do |coordinate|
+      return false if @cells[coordinate].ship == ship
+    end
 
     letters = []
     numbers = []
@@ -112,9 +115,12 @@ class Board
     numbers_to_test == new_value
   end
 
-  def place(ship, cells)
-    cells.each do |cell|
-      @cells[cell].ship = ship
+  def place(ship, coordinates)
+
+    if valid_placement?(ship, coordinates) == true
+      coordinates.each do |coordinate|
+        @cells[coordinate].ship = ship
+      end
     end
   end
 end
