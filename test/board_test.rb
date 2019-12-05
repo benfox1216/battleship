@@ -67,4 +67,8 @@ class BoardTest < Minitest::Test
     cell_3.ship
     assert_equal true, cell_3.ship == cell_2.ship
   end
+
+  def test_ships_do_not_overlap
+    
+  end
 end
