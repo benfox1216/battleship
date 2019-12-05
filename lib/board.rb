@@ -111,4 +111,10 @@ class Board
 
     numbers_to_test == new_value
   end
+
+  def place(ship, cells)
+    cells.each do |cell|
+      @cells[cell].ship = ship
+    end
+  end
 end
