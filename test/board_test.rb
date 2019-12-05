@@ -39,13 +39,11 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_validates_coordinates_are_not_diagonal
-    skip
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "B2", "C3"])
     assert_equal false, @board.valid_placement?(@submarine, ["C2", "D3"])
   end
 
   def test_it_validates_correct_coordinates_are_valid
-    skip
     assert_equal true, @board.valid_placement?(@submarine, ["A1", "A2"])
     assert_equal true, @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
   end

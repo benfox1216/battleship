@@ -90,7 +90,13 @@ class Board
   def check_numbers(value, ship)
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
 
-    numbers_index = numbers.index(value[0])
+    new_value = []
+
+    value.each do |number|
+      new_value << number.to_i
+    end
+
+    numbers_index = numbers.index(new_value[0])
     index_to_test = []
     numbers_to_test = []
 
@@ -103,6 +109,6 @@ class Board
       numbers_to_test << numbers[number]
     end
 
-    numbers_to_test == value
+    numbers_to_test == new_value
   end
 end
