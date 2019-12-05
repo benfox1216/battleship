@@ -51,7 +51,7 @@ class Board
   def valid_placement?(ship, coordinates)
     return false if ship.length != coordinates.count
     coordinates.each do |coordinate|
-      return false if @cells[coordinate].ship == ship
+      return false if @cells[coordinate].ship != nil
     end
 
     letters = []
