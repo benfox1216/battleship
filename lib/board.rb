@@ -59,22 +59,56 @@ class Board
       numbers << coordinate[1].split[0].to_s
     end
 
-    check_order(letters,ship)
+    if check_alphabet(letters, ship) == true && numbers.uniq.length == 1
+      true
+    elsif check_numbers(numbers, ship) == true && letters.uniq.length == 1
+      true
+    else
+      false
+    end
   end
 
-  def check_order(value,ship)
+  def check_alphabet(value, ship)
     alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     alphabet_index = alphabet.index(value[0])
     index_to_test = []
     letters_to_test = []
+
     ship.length.times do
       index_to_test << alphabet_index
       alphabet_index += 1
     end
+
     index_to_test.each do |letter|
       letters_to_test << alphabet[letter]
     end
+
     letters_to_test == value
+  end
+
+  def check_numbers(value, ship)
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+
+    new_value = []
+
+    value.each do |number|
+      new_value << number.to_i
+    end
+
+    numbers_index = numbers.index(new_value[0])
+    index_to_test = []
+    numbers_to_test = []
+
+    ship.length.times do
+      index_to_test << numbers_index
+      numbers_index += 1
+    end
+
+    index_to_test.each do |number|
+      numbers_to_test << numbers[number]
+    end
+
+    numbers_to_test == new_value
   end
 end
