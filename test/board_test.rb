@@ -97,44 +97,48 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_renders_board
+    skip
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
-    assert_equal
-      "  1 2 3 4 \n" +
-      "A . . . . \n" +
-      "B . . . . \n" +
-      "C . . . . \n" +
-      "D . . . . \n"
-    @board.render
+    variable =
+    "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . \n"
+    assert_equal variable, @board.render
   end
 
   def test_it_renders_ships_on_board
     skip
-    assert_equal
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    variable =
       "  1 2 3 4 \n" +
       "A S S S . \n" +
       "B . . . . \n" +
       "C . . . . \n" +
       "D . . . . \n"
-    @board.render(true)
+    assert_equal variable, @board.render(true)
   end
 
   def test_it_renders_hits_misses_and_sunken_ships
-    skip
-    assert_equal
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    
+    variable =
       "  1 2 3 4 \n" +
       "A H . . . \n" +
       "B . . . M \n" +
       "C X . . . \n" +
       "D X . . . \n"
-    @board.render
+    assert_equal variable, @board.render
 
-    assert_equal
+    variable =
       "  1 2 3 4 \n" +
       "A H S S . \n" +
       "B . . . M \n" +
       "C X . . . \n" +
       "D X . . . \n"
-    @board.render
+    assert_equal variable, @board.render
   end
 end

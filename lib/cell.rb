@@ -29,13 +29,15 @@ class Cell
   end
 
   def render(*add_ship)
-    if add_ship[0] == true
+    if add_ship[0] != nil
       @has_ship = true
     end
+    
     return "X" if @has_ship == true && @ship.health == 0
     return "H" if @fired_upon == true && @has_ship == true
     return "M" if @fired_upon == true && @has_ship == false
     return "S" if @has_ship == true
     "."
+
   end
 end
