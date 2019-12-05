@@ -91,7 +91,50 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_verifies_numbers_in_coordinates_are_ascending
+    skip
     assert_equal true, @board.check_numbers(["1", "2", "3"], @cruiser)
     assert_equal false, @board.check_numbers(["2", "1", "5"], @cruiser)
+  end
+
+  def test_it_renders_board
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    assert_equal
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    @board.render
+  end
+
+  def test_it_renders_ships_on_board
+    skip
+    assert_equal
+      "  1 2 3 4 \n" +
+      "A S S S . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    @board.render(true)
+  end
+
+  def test_it_renders_hits_misses_and_sunken_ships
+    skip
+    assert_equal
+      "  1 2 3 4 \n" +
+      "A H . . . \n" +
+      "B . . . M \n" +
+      "C X . . . \n" +
+      "D X . . . \n"
+    @board.render
+
+    assert_equal
+      "  1 2 3 4 \n" +
+      "A H S S . \n" +
+      "B . . . M \n" +
+      "C X . . . \n" +
+      "D X . . . \n"
+    @board.render
   end
 end
