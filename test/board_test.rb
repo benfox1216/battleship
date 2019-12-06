@@ -89,4 +89,62 @@ class BoardTest < Minitest::Test
     assert_equal true, @board.check_alphabet(["A", "B", "C"], @cruiser)
     assert_equal false, @board.check_alphabet(["B", "A", "F"], @cruiser)
   end
+
+  def test_it_verifies_numbers_in_coordinates_are_ascending
+    skip
+    assert_equal true, @board.check_numbers(["1", "2", "3"], @cruiser)
+    assert_equal false, @board.check_numbers(["2", "1", "5"], @cruiser)
+  end
+
+  def test_it_renders_board
+    skip
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    variable =
+    "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . \n"
+    assert_equal variable, @board.render
+  end
+
+  def test_it_renders_ships_on_board
+    skip
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    variable =
+      "  1 2 3 4 \n" +
+      "A S S S . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    assert_equal variable, @board.render(true)
+  end
+
+  def test_it_renders_hits_misses_and_sunken_ships
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.place(@submarine, ["C1", "D1"])
+
+    @board.cells["B4"].fire_upon
+    @board.cells["A1"].fire_upon
+    @board.cells["C1"].fire_upon
+    @board.cells["D1"].fire_upon
+
+    variable =
+      "  1 2 3 4 \n" +
+      "A H . . . \n" +
+      "B . . . M \n" +
+      "C X . . . \n" +
+      "D X . . . \n"
+    assert_equal variable, @board.render
+
+    variable =
+      "  1 2 3 4 \n" +
+      "A H S S . \n" +
+      "B . . . M \n" +
+      "C X . . . \n" +
+      "D X . . . \n"
+    assert_equal variable, @board.render(true)
+  end
 end

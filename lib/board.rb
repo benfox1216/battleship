@@ -1,5 +1,4 @@
 require_relative '../lib/cell'
-require 'pry'
 
 class Board
   attr_reader :cells
@@ -38,8 +37,7 @@ class Board
       "D1" => D1,
       "D2" => D2,
       "D3" => D3,
-      "D4" => D4,
-    }
+      "D4" => D4}
 
   end
 
@@ -122,5 +120,22 @@ class Board
         @cells[coordinate].ship = ship
       end
     end
+  end
+
+  def render(unhide_ships = false)
+    @cells.each do |cell|
+      cell[1].show_ships = unhide_ships
+    end
+
+    board =
+    "  1 2 3 4 \n" +
+    "A #{A1.render(A1.ship)} #{A2.render(A2.ship)} #{A3.render(A3.ship)} #{A4.render(A4.ship)} \n" +
+    "B #{B1.render(B1.ship)} #{B2.render(B2.ship)} #{B3.render(B3.ship)} #{B4.render(B4.ship)} \n" +
+    "C #{C1.render(C1.ship)} #{C2.render(C2.ship)} #{C3.render(C3.ship)} #{C4.render(C4.ship)} \n" +
+    "D #{D1.render(D1.ship)} #{D2.render(D2.ship)} #{D3.render(D3.ship)} #{D4.render(D4.ship)} \n"
+
+    puts board
+    board
+
   end
 end
