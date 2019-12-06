@@ -1,13 +1,14 @@
 class Cell
 
   attr_reader :coordinate, :fired_upon
-  attr_accessor :ship
+  attr_accessor :ship, :show_ships
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = ship
     @fired_upon = false
     @has_ship = false
+    @show_ships = false
   end
 
   def place_ship(ship)
@@ -38,7 +39,10 @@ class Cell
     return "X" if @has_ship == true && @ship.health == 0
     return "H" if @fired_upon == true && @has_ship == true
     return "M" if @fired_upon == true && @has_ship == false
-    return "S" if @fired_upon == false && @has_ship == true
+    
+    if @show_ships == true
+      return "S" if @fired_upon == false && @has_ship == true
+    end
     "."
 
   end

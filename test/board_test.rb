@@ -137,7 +137,7 @@ class BoardTest < Minitest::Test
       "B . . . M \n" +
       "C X . . . \n" +
       "D X . . . \n"
-    # assert_equal variable, @board.render
+    assert_equal variable, @board.render
 
     variable =
       "  1 2 3 4 \n" +
@@ -145,6 +145,6 @@ class BoardTest < Minitest::Test
       "B . . . M \n" +
       "C X . . . \n" +
       "D X . . . \n"
-    assert_equal variable, @board.render
+    assert_equal variable, @board.render(true)
   end
 end

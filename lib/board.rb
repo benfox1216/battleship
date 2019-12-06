@@ -37,8 +37,7 @@ class Board
       "D1" => D1,
       "D2" => D2,
       "D3" => D3,
-      "D4" => D4,
-    }
+      "D4" => D4}
 
   end
 
@@ -123,7 +122,11 @@ class Board
     end
   end
 
-  def render(*boolean)
+  def render(unhide_ships = false)
+    @cells.each do |cell|
+      cell[1].show_ships = unhide_ships
+    end
+
     board =
     "  1 2 3 4 \n" +
     "A #{A1.render(A1.ship)} #{A2.render(A2.ship)} #{A3.render(A3.ship)} #{A4.render(A4.ship)} \n" +
@@ -133,5 +136,6 @@ class Board
 
     puts board
     board
+
   end
 end
