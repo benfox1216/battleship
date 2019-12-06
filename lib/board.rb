@@ -131,9 +131,7 @@ class Board
     "C #{C1.render(C1.ship)} #{C2.render(C2.ship)} #{C3.render(C3.ship)} #{C4.render(C4.ship)} \n" +
     "D #{D1.render(D1.ship)} #{D2.render(D2.ship)} #{D3.render(D3.ship)} #{D4.render(D4.ship)} \n"
 
-    #if boolean == true
-
-    print board
+    puts board
     board
   end
 end
