@@ -128,9 +128,8 @@ class BoardTest < Minitest::Test
 
     @board.cells["B4"].fire_upon
     @board.cells["A1"].fire_upon
-    @board.cells["B4"].fire_upon
-    @board.cells["B4"].fire_upon
-    @board.cells["B4"].fire_upon
+    @board.cells["C1"].fire_upon
+    @board.cells["D1"].fire_upon
 
     variable =
       "  1 2 3 4 \n" +
