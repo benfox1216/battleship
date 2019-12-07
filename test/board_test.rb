@@ -123,6 +123,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_renders_hits_misses_and_sunken_ships
+    skip
     @board.place(@cruiser, ["A1", "A2", "A3"])
     @board.place(@submarine, ["C1", "D1"])
 
