@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/turn.rb'
+require './lib/board.rb'
 
 class TurnTest < Minitest::Test
 
@@ -33,7 +34,7 @@ class TurnTest < Minitest::Test
 
   def test_user_guess_is_rejected_if_already_placed
     @turn.place_ships(["A1", "A2", "A3"])
-    assert_equal false, @turn.place_ships["A1", "A2", "A3"]
+    assert_equal false, @turn.place_ships(["A1", "A2", "A3"])
   end
 
   # 2. player needs to be able to input coordinates to fire upon

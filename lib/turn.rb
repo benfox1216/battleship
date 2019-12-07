@@ -13,7 +13,8 @@ class Turn
     @board.render(true)
   end
 
-  def place_board(*user_input)
-    
+  def place_ships(*user_input)
+    user_input = gets.chomp
+
   end
 end
