@@ -29,4 +29,4 @@ print "> "
 enter_coordinates = gets.chomp
 split_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
-require "pry"; binding.pry
+require "pry"; binding.prygh
