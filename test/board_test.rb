@@ -1,5 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'Minitest/autorun'
+require 'Minitest/pride'
 require_relative '../lib/board.rb'
 require_relative '../lib/ship.rb'
 
