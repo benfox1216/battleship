@@ -1,7 +1,7 @@
 require 'Minitest/autorun'
 require 'Minitest/pride'
-require_relative '../lib/board.rb'
-require_relative '../lib/ship.rb'
+require_relative '../lib/board'
+require_relative '../lib/ship'
 
 class BoardTest < Minitest::Test
   def setup
