@@ -36,8 +36,8 @@ class Runner
 
     enter_coordinates = gets.chomp
     split_coordinates = enter_coordinates.tr(",.;:/'", " ").split
-
-    if split_coordinates.count != @cruiser.length
+require "pry"; binding.pry
+    if @board.valid_placement?(@cruiser, split_coordinates) == false
       puts "Those are invalid coordinates. Please try again:"
       enter_coordinates
     end
