@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/turn.rb'
-require './lib/board.rb'
+require './lib/turn'
+require './lib/board'
 
 class TurnTest < Minitest::Test
 
