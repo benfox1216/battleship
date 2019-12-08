@@ -29,6 +29,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_user_can_input_coordinates
+    # use .length to make sure that 3 coordinates
     assert_equal !nil, @turn.place_ships(["A1", "A2", "A3"])
   end
 
