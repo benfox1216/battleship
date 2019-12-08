@@ -5,7 +5,6 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = ship
     @fired_upon = false
     @has_ship = false
     @show_ships = false
@@ -35,7 +34,7 @@ class Cell
     if @ship != nil
       @has_ship = true
     end
-
+    
     return "X" if @has_ship == true && @ship.health == 0
     return "H" if @fired_upon == true && @has_ship == true
     return "M" if @fired_upon == true && @has_ship == false
