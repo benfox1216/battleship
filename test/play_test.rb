@@ -28,7 +28,7 @@ class PlayTest < Minitest::Test
     "C . . . . \n" +
     "D . . . . \n"
 
-    assert_equal game.start_game, empty_board
+    assert_equal @game.start_game, empty_board
   end
 
   def test_that_ship_is_added_to_board_if_player_inputs_valid_entry_for_first_coordinate
@@ -53,18 +53,18 @@ class PlayTest < Minitest::Test
     "B . . . . \n" +
     "C . . . . \n" +
     "D . . . . \n"
-    
+
     assert_equal board, @game.enter_second_coordinates
   end
 
   def test_computer_places_2_ships_on_computer_board
-    assert_equal 5, place_computer_ships.count("S")
+    assert_equal 5, @game.place_computer_ships.count("S")
   end
 
   def test_random_placement_only_returns_a_valid_placement
     coordinates = @game.random_placement_generator(3)
     board = Board.new
-    cruiser = Ship.new
+    cruiser = Ship.new("Cruiser", 3)
     assert_equal 3, coordinates.length
     assert_equal true, board.valid_placement?(cruiser, coordinates)
   end

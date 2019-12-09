@@ -69,9 +69,9 @@ class Play
 
   def place_computer_ships
     begin
-      computer_input = computer_place_cruiser(3)
+      computer_input = random_placement_generator(3)
 
-      until @computer_board.valid_placement?(@computer_cruiser, computer_input) == true
+      until @computer_board.valid_placement?(@computer_cruiser, computer_input)
         redo
       end
     end
@@ -79,11 +79,10 @@ class Play
 
   def random_placement_generator(length)
     possibilities = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
-
     final_coordinates = []
 
     length.times do
-      final_coordinates << possibilites.sample
+      final_coordinates << possibilities.sample
     end
 
     final_coordinates
