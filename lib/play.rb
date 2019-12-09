@@ -43,7 +43,7 @@ class Play
 
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
-      enter_coordinates
+      enter_first_coordinates
     else
       @player_board.place(@player_cruiser, split_first_coordinates)
       puts "\n"
