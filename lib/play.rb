@@ -4,7 +4,7 @@ require_relative '../lib/ship'
 require_relative '../lib/turn'
 
 class Play
-  attr_reader :board
+  attr_reader :player_board, :computer_board
 
   def initialize
     @player_board = Board.new
