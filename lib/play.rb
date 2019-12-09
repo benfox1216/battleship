@@ -78,13 +78,39 @@ class Play
   end
 
   def random_placement_generator(length)
-    possibilities = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
-    final_coordinates = []
-
-    length.times do
-      final_coordinates << possibilities.sample
+    possibilities = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "D1", "D2"]
+    
+    first_coordinate = []
+    first_coordinate << possibilities.sample
+    
+    first_coordinate_num = first_coordinate[0].split(//)[1].to_i
+    first_coordinate_letter = first_coordinate[0].split(//)[0]
+    
+    if (first_coordinate_num == 1 || first_coordinate_num == 2) && (first_coordinate_letter.bytes[0] == 65 || first_coordinate_letter.bytes[0] == 66)
+      directional = ["down", "right"].sample
+    elsif first_coordinate_num == 3 || first_coordinate_num == 4
+      directional = "down"
+    elsif first_coordinate_letter.bytes[0] == 67 || first_coordinate_letter.bytes[0] == 68
+      directional = "right"
     end
+    
+    final_coordinates = []
+    
+    if directional == "right"
+      length.times do
+        final_coordinates << first_coordinate_num
+        first_coordinate_num += 1
+      end
+      
+      final_coordinates = final_coordinates.map do |coordinate|
+        first_coordinate_letter + coordinate.to_s
+      end
 
+    end
+    
+    ### A1, A2, A3
+    ### C3, C4
+require "pry"; binding.pry
     final_coordinates
   end
 
