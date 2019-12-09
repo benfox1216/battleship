@@ -68,13 +68,13 @@ class Play
   end
 
   def place_computer_ships
-    begin
-      computer_input = random_placement_generator(3)
-
-      until @computer_board.valid_placement?(@computer_cruiser, computer_input)
-        redo
-      end
-    end
+    # begin
+    # computer_input = random_placement_generator(3)
+    #
+    #   until @computer_board.valid_placement?(@computer_cruiser, computer_input)
+    #     redo
+    #   end
+    # end
   end
 
   def random_placement_generator(length)
@@ -105,12 +105,25 @@ class Play
       final_coordinates = final_coordinates.map do |coordinate|
         first_coordinate_letter + coordinate.to_s
       end
-
+      
+    elsif directional == "down"
+      first_coordinate_letter_bytes = first_coordinate_letter.bytes[0]
+      
+      length.times do
+        final_coordinates << first_coordinate_letter_bytes
+        first_coordinate_letter_bytes += 1
+      end
+      
+      final_coordinates = final_coordinates.map do |coordinate|
+        coordinate = coordinate.chr
+        coordinate + first_coordinate_num.to_s
+      end
+        
     end
     
     ### A1, A2, A3
     ### C3, C4
-require "pry"; binding.pry
+
     final_coordinates
   end
 
