@@ -18,7 +18,7 @@ class Play
 
   def start_game
     puts  "\nWelcome to BATTLESHIP\n" +
-    "Enter p to play. Enter q to quit at any time."
+    "Enter any key to play. Enter q to quit at any time."
 
     print "> "
     play_or_quit = gets.chomp
@@ -35,11 +35,12 @@ class Play
   end
 
   def enter_first_coordinates
-    puts "Enter the coordinates for the Cruiser (3 spaces):"
+    puts "Enter the 3 coordinates for the Cruiser (divided by spaces):"
     print "> "
     enter_coordinates = gets.chomp
-    
     exit(true) if enter_coordinates == "q"
+    puts "\n"
+    
     split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
     
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
