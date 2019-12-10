@@ -18,12 +18,11 @@ class Play
 
   def start_game
     puts  "\nWelcome to BATTLESHIP\n" +
-    "Enter p to play. Enter q to quit."
+    "Enter p to play. Enter q to quit at any time."
 
     print "> "
     play_or_quit = gets.chomp
-
-    exit(true) if play_or_quit != "p"
+    exit(true) if play_or_quit == "q"
 
     puts "\nLet's play!\n\n"
 
@@ -32,15 +31,17 @@ class Play
     "The Cruiser is three units long and the Submarine is two units long.\n\n"
 
     @player_board.render
+    puts "\n"
   end
 
   def enter_first_coordinates
     puts "Enter the coordinates for the Cruiser (3 spaces):"
     print "> "
-
-    enter_first_coordinates = gets.chomp
-    split_first_coordinates = enter_first_coordinates.tr(",.;:/'", " ").split
-
+    enter_coordinates = gets.chomp
+    
+    exit(true) if enter_coordinates == "q"
+    split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
+    
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
       enter_first_coordinates
@@ -48,6 +49,7 @@ class Play
       @player_board.place(@player_cruiser, split_first_coordinates)
       puts "\n"
       @player_board.render(true)
+      puts "\n"
     end
   end
 
@@ -55,12 +57,13 @@ class Play
     puts "Enter the coordinates for the Submarine (2 spaces):"
     print "> "
 
-    enter_second_coordinates = gets.chomp
-    split_second_coordinates = enter_second_coordinates.tr(",.;:/'", " ").split
+    enter_coordinates = gets.chomp
+    exit(true) if enter_coordinates == "q"
+    split_second_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
     if @player_board.valid_placement?(@player_submarine, split_second_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
-      enter_second_coordinates
+      return enter_second_coordinates
     else
       @player_board.place(@player_submarine, split_second_coordinates)
       puts "\n"
@@ -76,8 +79,6 @@ class Play
     end
       @computer_board.place(@computer_cruiser, computer_cruiser_input)
       @computer_board.place(@computer_submarine, computer_submarine_input)
-
-      @computer_board.render(true)
   end
 
   def random_placement_generator(length)
@@ -123,13 +124,11 @@ class Play
         end
 
       end
-
-      ### A1, A2, A3
-      ### C3, C4
       final_coordinates
   end
 
   def take_turn
-    @turn.render
+    @turn.render(@computer_board, @player_board)
+    @turn.computer_take_shot(@computer_board)
   end
 end
