@@ -5,37 +5,61 @@ require './lib/board'
 
 class TurnTest < Minitest::Test
 
-  # def setup
-  #   @turn = Turn.new
-  # end
-  #
-  # def test_it_exists
-  #   assert_instance_of Turn, @turn
-  # end
-  #
-  # def test_turn_creates_a_new_board_each_time_its_called
-  #   assert_instance_of Board, @turn.board
-  # end
-  #
-  # def test_board_is_rended_blank_at_start_of_game
-  #   board =
-  #   "  1 2 3 4 \n" +
-  #   "A . . . . \n" +
-  #   "B . . . . \n" +
-  #   "C . . . . \n" +
-  #   "D . . . . \n"
-  #
-  #   assert_equal board, @turn.render
-  # end
-  #
-  # def test_user_can_input_coordinates
-  #   ship_placement = @turn.place_ships(["A1", "A2", "A3"])
-  #   require "pry"; binding.pry
-  #   assert_equal 3, ship_placement.length
-  # end
-  #
-  # def test_user_guess_is_rejected_if_already_placed
-  #   @turn.place_ships(["A1", "A2", "A3"])
-  #   assert_equal false, @turn.place_ships(["A1", "A2", "A3"])
-  # end
+  def setup
+    @turn = Turn.new
+    @game = Play.new
+  end
+
+  def test_it_exists
+    assert_instance_of Turn, @turn
+  end
+
+  def test_player_board_is_displayed_showing_hits_misses_and_ships
+    @game.enter_first_coordinates
+    @game.enter_second_coordinates
+
+    assert_equal 5, @game.player_board(true).count("S")
+  end
+
+  def test_computer_board_is_displayed_showing_only_hits_and_misses
+    @game.place_computer_ships
+    assert_equal 0, @game.computer_board.count("S")
+  end
+
+  def test_computer_can_choose_a_random_shot
+    @game.enter_first_coordinates
+    @game.enter_second_coordinates
+    @game.place_computer_ships
+    @game.computer_take_shot
+
+    assert_equal 1, @game.computer_board.count("M", "H")
+  end
+
+  def test_computer_does_not_fire_at_same_spot_twice
+    refute_equal @game.computer_take_shot, @game.computer_take_shot
+  end
+
+  def test_player_can_choose_a_spot_to_fire
+    @game.enter_first_coordinates
+    @game.enter_second_coordinates
+    @game.place_computer_ships
+    @game.player_take_shot
+    assert_equal 1, @game.player_board.count("M", "H")
+  end
+
+  def test_player_is_informed_if_they_have_already_fired_on_a_coordinate
+    refute_equal @game.player_take_shot, @game.player_take_shot
+  end
+
+  def test_both_computer_and_player_shots_are_reported_correctly
+    @game.enter_first_coordinates
+    @game.enter_second_coordinates
+    @game.place_computer_ships
+
+    @game.computer_take_shot
+    @game.player_take_shot
+
+    assert_equal 1, @game.player_board.count("M", "H")
+    assert_equal 1, @game.computer_board.count("M", "H")
+  end
  end
