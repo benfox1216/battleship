@@ -59,9 +59,6 @@ class TurnTest < Minitest::Test
     
     assert_equal true, @game.computer_board.render.include?("M") || @game.computer_board.render.include?("H")
   end
-  
-  # A1 A2 A3
-  # C3 C4
 
   def test_player_is_informed_if_they_have_already_fired_on_a_coordinate
     skip

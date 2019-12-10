@@ -133,4 +133,13 @@ class Play
     @turn.computer_take_shot(@player_board)
     @turn.player_take_shot(@computer_board)
   end
+  
+  def end_game
+    if @player_board.render(true).include?("S") == false
+      puts "You lost. 😿"
+    elsif @computer_board.render(true).include?("S") == false
+      puts "You won! 😸 🎉"
+    end
+    require "pry"; binding.pry
+  end
 end
