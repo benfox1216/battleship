@@ -11,19 +11,16 @@ class PlayTest < Minitest::Test
   end
 
   def test_it_exists
-    skip
     assert_instance_of Play, @game
   end
 
   def test_it_has_attributes
-    skip
     assert_instance_of Board, @game.player_board
     assert_instance_of Board, @game.computer_board
     refute_equal @game.player_board, @game.computer_board
   end
 
   def test_start_game_returns_empty_board
-    skip
     empty_board =
     "  1 2 3 4 \n" +
     "A . . . . \n" +
@@ -35,7 +32,6 @@ class PlayTest < Minitest::Test
   end
 
   def test_that_ship_is_added_to_board_if_player_inputs_valid_entry_for_first_coordinate
-    skip
     coordinate = ["A2", "A3", "A4"]
 
     board =
@@ -49,12 +45,11 @@ class PlayTest < Minitest::Test
   end
 
   def test_that_ship_is_added_to_board_if_player_inputs_valid_entry_for_second_coordinate
-    skip
     coordinate = ["A2", "A3", "A4"]
 
     board =
     "  1 2 3 4 \n" +
-    "A S S . . \n" +
+    "A S S S . \n" +
     "B . . . . \n" +
     "C . . . . \n" +
     "D . . . . \n"
@@ -63,8 +58,8 @@ class PlayTest < Minitest::Test
   end
 
   def test_computer_places_2_ships_on_computer_board
-    skip
-    assert_equal 5, @game.place_computer_ships.count("S")
+    computer_ships = @game.place_computer_ships
+    assert_equal 5, computer_ships.count("S")
   end
 
   def test_random_placement_only_returns_a_valid_placement
