@@ -31,6 +31,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_computer_can_choose_a_random_shot
+    skip
     @game.enter_first_coordinates
     @game.enter_second_coordinates
     @game.place_computer_ships
@@ -38,15 +39,15 @@ class TurnTest < Minitest::Test
     
     @turn.computer_take_shot(test_board)
 
-    assert_equal 1, test_board.render.count("M", "H")
+    assert_equal true, test_board.render.include?("M") || test_board.render.include("H")
   end
-  
-  # A1 A2 A3
-  # C4 D4
 
   def test_computer_does_not_fire_at_same_spot_twice
-    skip
-    refute_equal @game.computer_take_shot, @game.computer_take_shot
+    16.times do
+      @turn.computer_take_shot(@game.player_board)
+    end
+    
+    #assert_equal @game.player_board
   end
 
   def test_player_can_choose_a_spot_to_fire
