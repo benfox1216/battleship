@@ -7,14 +7,19 @@ class Turn
   def initialize
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
-    @player_board = Board.new
-    @computer_board = Board.new
   end
 
-  def render
+  def render(computer_board, player_board)
     puts "=============COMPUTER BOARD============="
-    @computer_board.render
+    computer_board.render
+    puts "\n"
+    
     puts "==============PLAYER BOARD=============="
-    @player_board.render(true)
+    player_board.render(true)
+    puts "\n"
+  end
+  
+  def computer_take_shot
+    
   end
 end

@@ -37,11 +37,11 @@ class Play
   def enter_first_coordinates
     puts "Enter the coordinates for the Cruiser (3 spaces):"
     print "> "
-
     enter_coordinates = gets.chomp
+    
     exit(true) if enter_coordinates == "q"
     split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
-
+    
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
       enter_first_coordinates
@@ -67,8 +67,6 @@ class Play
     else
       @player_board.place(@player_submarine, split_second_coordinates)
       puts "\n"
-      @player_board.render(true)
-      puts "\n"
     end
   end
 
@@ -81,9 +79,6 @@ class Play
     end
       @computer_board.place(@computer_cruiser, computer_cruiser_input)
       @computer_board.place(@computer_submarine, computer_submarine_input)
-
-      @computer_board.render(true)
-      puts "\n"
   end
 
   def random_placement_generator(length)
@@ -133,6 +128,6 @@ class Play
   end
 
   def take_turn
-    @turn.render
+    @turn.render(@computer_board, @player_board)
   end
 end
