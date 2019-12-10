@@ -38,9 +38,9 @@ class Play
     puts "Enter the coordinates for the Cruiser (3 spaces):"
     print "> "
 
-    enter_first_coordinates = gets.chomp
-    exit(true) if enter_first_coordinates == "q"
-    split_first_coordinates = enter_first_coordinates.tr(",.;:/'", " ").split
+    enter_coordinates = gets.chomp
+    exit(true) if enter_coordinates == "q"
+    split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
@@ -57,13 +57,13 @@ class Play
     puts "Enter the coordinates for the Submarine (2 spaces):"
     print "> "
 
-    enter_second_coordinates = gets.chomp
-    exit(true) if enter_second_coordinates == "q"
-    split_second_coordinates = enter_second_coordinates.tr(",.;:/'", " ").split
+    enter_coordinates = gets.chomp
+    exit(true) if enter_coordinates == "q"
+    split_second_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
     if @player_board.valid_placement?(@player_submarine, split_second_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
-      enter_second_coordinates
+      return enter_second_coordinates
     else
       @player_board.place(@player_submarine, split_second_coordinates)
       puts "\n"
