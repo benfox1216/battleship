@@ -34,9 +34,11 @@ class TurnTest < Minitest::Test
     @game.enter_first_coordinates
     @game.enter_second_coordinates
     @game.place_computer_ships
-    @game.computer_take_shot
+    test_board = @game.player_board
+    
+    @turn.computer_take_shot(test_board)
 
-    assert_equal 1, @game.computer_board.render.count("M", "H")
+    assert_equal 1, test_board.render.count("M", "H")
   end
   
   # A1 A2 A3

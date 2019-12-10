@@ -129,5 +129,6 @@ class Play
 
   def take_turn
     @turn.render(@computer_board, @player_board)
+    @turn.computer_take_shot(@computer_board)
   end
 end
