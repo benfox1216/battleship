@@ -35,7 +35,7 @@ class Play
   end
 
   def enter_first_coordinates
-    puts "Enter the 3 coordinates for the Cruiser (divided by spaces):"
+    puts "Enter 3 valid coordinates for the Cruiser (separated by spaces):"
     print "> "
     enter_coordinates = gets.chomp
     exit(true) if enter_coordinates == "q"
@@ -55,7 +55,7 @@ class Play
   end
 
   def enter_second_coordinates
-    puts "Enter the coordinates for the Submarine (2 spaces):"
+    puts "Enter 2 valid coordinates for the Submarine (separated by spaces):"
     print "> "
 
     enter_coordinates = gets.chomp
@@ -130,7 +130,7 @@ class Play
 
   def take_turn
     @turn.render(@computer_board, @player_board)
-    @turn.computer_take_shot(@computer_board)
-    @turn.player_take_shot
+    @turn.computer_take_shot(@player_board)
+    @turn.player_take_shot(@computer_board)
   end
 end

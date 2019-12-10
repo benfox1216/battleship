@@ -39,7 +39,7 @@ class TurnTest < Minitest::Test
 
     @turn.computer_take_shot(test_board)
 
-    assert_equal true, test_board.render.include?("M") || test_board.render.include("H")
+    assert_equal true, test_board.render.include?("M") || test_board.render.include?("H")
   end
 
   def test_computer_does_not_fire_at_same_spot_twice
@@ -56,7 +56,8 @@ class TurnTest < Minitest::Test
     @game.enter_second_coordinates
     @game.place_computer_ships
     @turn.player_take_shot(@game.computer_board)
-    assert_equal 1, @game.player_board.count("M", "H")
+    
+    assert_equal true, @game.computer_board.render.include?("M") || @game.computer_board.render.include?("H")
   end
   
   # A1 A2 A3
