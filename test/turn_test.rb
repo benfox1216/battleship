@@ -36,7 +36,7 @@ class TurnTest < Minitest::Test
     @game.enter_second_coordinates
     @game.place_computer_ships
     test_board = @game.player_board
-    
+
     @turn.computer_take_shot(test_board)
 
     assert_equal true, test_board.render.include?("M") || test_board.render.include("H")
@@ -46,8 +46,8 @@ class TurnTest < Minitest::Test
     16.times do
       @turn.computer_take_shot(@game.player_board)
     end
-    
-    #assert_equal @game.player_board
+
+    assert_equal 16, @game.player_board.render.count("M")
   end
 
   def test_player_can_choose_a_spot_to_fire
