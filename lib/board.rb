@@ -111,13 +111,12 @@ class Board
     @cells.each do |cell|
       cell[1].show_ships = unhide_ships
     end
-
     board =
     "  1 2 3 4 \n" +
-    "A #{A1.render(A1.ship)} #{A2.render(A2.ship)} #{A3.render(A3.ship)} #{A4.render(A4.ship)} \n" +
-    "B #{B1.render(B1.ship)} #{B2.render(B2.ship)} #{B3.render(B3.ship)} #{B4.render(B4.ship)} \n" +
-    "C #{C1.render(C1.ship)} #{C2.render(C2.ship)} #{C3.render(C3.ship)} #{C4.render(C4.ship)} \n" +
-    "D #{D1.render(D1.ship)} #{D2.render(D2.ship)} #{D3.render(D3.ship)} #{D4.render(D4.ship)} \n\n"
+    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
+    "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
+    "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
+    "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
 
     puts board
     board
