@@ -32,29 +32,15 @@ class PlayTest < Minitest::Test
   end
 
   def test_that_ship_is_added_to_board_if_player_inputs_valid_entry_for_first_coordinate
-    coordinate = ["A2", "A3", "A4"]
-
-    board =
-    "  1 2 3 4 \n" +
-    "A S S S . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . \n"
-
-    assert_equal board, @game.enter_first_coordinates
+    @game.enter_first_coordinates
+    players_board = @game.player_board.render(true)
+    assert_equal 3, players_board.count("S")
   end
 
   def test_that_ship_is_added_to_board_if_player_inputs_valid_entry_for_second_coordinate
-    coordinate = ["A2", "A3", "A4"]
-
-    board =
-    "  1 2 3 4 \n" +
-    "A S S S . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . \n"
-
-    assert_equal board, @game.enter_second_coordinates
+    @game.enter_second_coordinates
+    players_board = @game.player_board.render(true)
+    assert_equal 2, players_board.count("S")
   end
 
   def test_computer_places_2_ships_on_computer_board
