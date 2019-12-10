@@ -48,7 +48,7 @@ class Board
 
   def valid_placement?(ship, coordinates)
     return false if ship.length != coordinates.count
-    
+
 ### TEST FOR OVERLAPPING SHIPS ###
     coordinates.each do |coordinate|
       return false if @cells[coordinate] == nil
