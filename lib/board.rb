@@ -111,6 +111,7 @@ class Board
     @cells.each do |cell|
       cell[1].show_ships = unhide_ships
     end
+    
     board =
     "  1 2 3 4 \n" +
     "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
@@ -120,6 +121,5 @@ class Board
 
     puts board
     board
-
   end
 end

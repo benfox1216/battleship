@@ -17,7 +17,7 @@ class Turn
     shot = ""
 
     loop do
-      puts "Enter a valid coordinate to take your shot:"
+      puts "Enter a coordinate to take your shot:"
       print "> "
 
       shot = gets.chomp
@@ -42,7 +42,7 @@ class Turn
     end
   end
 
-  def computer_take_shot(computer_board, player_board)
+  def computer_take_shot(player_board)
     possibilities = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
 
     shot = ""
@@ -59,7 +59,5 @@ class Turn
     else
       puts "Computer shot on #{shot} hit!\n\n"
     end
-    
-    render(computer_board, player_board)
   end
 end
