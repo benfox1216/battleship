@@ -29,7 +29,7 @@ class Turn
         cell[1].coordinate == shot
       end
 
-      break if computer_board.cells[shot].fired_upon == false && shot_validation != nil
+      break if shot_validation != nil && computer_board.cells[shot].fired_upon == false
 
       puts "\n"
       puts "Those are invalid coordinates. Please try again:\n"
