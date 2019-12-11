@@ -15,7 +15,6 @@ class TurnTest < Minitest::Test
     assert_instance_of Turn, @turn
   end
 
-### ONLY TESTS SHIPS
   def test_player_board_is_displayed_showing_hits_misses_and_ships
     skip
     @game.enter_first_coordinates

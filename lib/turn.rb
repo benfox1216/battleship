@@ -10,7 +10,7 @@ class Turn
     puts "\n"
     
     puts "=============COMPUTER BOARD============="
-    computer_board.render
+    computer_board.render(true)
     puts computer_board.board
     puts "\n"
   end
@@ -35,7 +35,7 @@ class Turn
       puts "Those are invalid coordinates. Please try again:\n"
     end
 
-    computer_board.cells[shot].fired_upon = true
+    computer_board.cells[shot].fire_upon
 
     if computer_board.cells[shot].render == "M"
       puts "Your shot on #{shot} missed!\n\n"

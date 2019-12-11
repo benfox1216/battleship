@@ -36,7 +36,7 @@ class Cell
       @has_ship = true
     end
 
-    return "X" if @has_ship == true && @ship.sunk?
+    return "X" if @has_ship == true && @ship.sunk? == true
     return "H" if @fired_upon == true && @has_ship == true
     return "M" if @fired_upon == true && @has_ship == false
 
