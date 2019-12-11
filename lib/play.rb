@@ -17,7 +17,7 @@ class Play
   end
 
   def start_game
-    puts  "\nWelcome to BATTLESHIP\n" +
+    puts  "\nWelcome to BATTLESHIP: ENDGAME\n" +
     "Enter any key to play. Enter q to quit at any time."
 
     print "> "
@@ -26,8 +26,8 @@ class Play
 
     puts "\nLet's play!\n\n"
 
-    puts "I have laid out my ships on the grid.\n" +
-    "You now need to lay out your two ships.\n" +
+    puts "The computer has placed their ships on their board.\n" +
+    "You now need to place your two ships.\n" +
     "The Cruiser is three units long and the Submarine is two units long.\n\n"
 
     @player_board.render
@@ -39,7 +39,6 @@ class Play
     print "> "
     enter_coordinates = gets.chomp
     exit(true) if enter_coordinates == "q"
-    puts "\n"
     
     split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
     
@@ -49,6 +48,7 @@ class Play
     else
       @player_board.place(@player_cruiser, split_first_coordinates)
       puts "\n"
+      puts "Your board:"
       @player_board.render(true)
       puts "\n"
     end
@@ -130,16 +130,15 @@ class Play
 
   def take_turn
     @turn.render(@computer_board, @player_board)
-    @turn.computer_take_shot(@player_board)
     @turn.player_take_shot(@computer_board)
+    @turn.computer_take_shot(@computer_board, @player_board)
   end
   
-  def end_game
-    if @player_board.render(true).include?("S") == false
-      puts "You lost. 😿"
-    elsif @computer_board.render(true).include?("S") == false
-      puts "You won! 😸 🎉"
-    end
-    require "pry"; binding.pry
-  end
+  # def end_game
+  #   if @player_board.render(true).include?("S") == false
+  #     puts "You lost. 😿"
+  #   elsif @computer_board.render(true).include?("S") == false
+  #     puts "You won! 😸 🎉"
+  #   end
+  # end
 end

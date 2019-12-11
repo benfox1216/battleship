@@ -11,12 +11,12 @@ class Turn
   end
 
   def render(computer_board, player_board)
-    puts "=============COMPUTER BOARD============="
-    computer_board.render
-    puts "\n"
-
     puts "==============PLAYER BOARD=============="
     player_board.render(true)
+    puts "\n"
+    
+    puts "=============COMPUTER BOARD============="
+    computer_board.render
     puts "\n"
   end
 
@@ -49,12 +49,9 @@ class Turn
     else
       puts "Your shot on #{shot} hit!\n\n"
     end
-
-    computer_board.render(true)
-    puts "\n"
   end
 
-  def computer_take_shot(player_board)
+  def computer_take_shot(computer_board, player_board)
     possibilities = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
 
     shot = ""
@@ -73,8 +70,7 @@ class Turn
     else
       puts "Computer shot on #{shot} hit!\n\n"
     end
-
-    player_board.render(true)
-    puts "\n"
+    
+    render(computer_board, player_board)
   end
 end
