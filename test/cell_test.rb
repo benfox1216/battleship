@@ -66,13 +66,28 @@ class CellTest < Minitest::Test
   end
 
   def test_ship_sinks_after_3_hits
+<<<<<<< HEAD
     @cell_2.place_ship(@cruiser)
     @cell_2.render(true)
     @cell_2.fire_upon
     @cruiser.hit
     @cruiser.hit
 
+=======
+    cell1 = Cell.new("A1")
+    cell2 = Cell.new("A2")
+    cell3 = Cell.new("A3")
+    
+    cell1.place_ship(@cruiser)
+    cell2.place_ship(@cruiser)
+    cell3.place_ship(@cruiser)
+  
+    cell1.fire_upon
+    cell2.fire_upon
+    cell3.fire_upon
+require "pry"; binding.pry
+>>>>>>> 6a34f6d54808dd2df69d54ba94026c070e83ccfa
     assert_equal true, @cruiser.sunk?
-    assert_equal "X", @cell_2.render
+    assert_equal "X", cell1.render
   end
 end

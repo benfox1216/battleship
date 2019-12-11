@@ -153,9 +153,34 @@ class Play
 
   def end_game
     if @player_board.render(true).include?("S") == false
-      puts "You lost. 😿"
+      puts "You lost. 😿\n"
+      
+      puts "Enter any key to play again, or q to quit."
+      print "> "
+      play_or_quit = gets.chomp
+      exit(true) if play_or_quit == "q"
+      
+      start_game
+      initialize
+      start_game
+      enter_first_coordinates
+      enter_second_coordinates
+      place_computer_ships
+      take_turns
     elsif @computer_board.render(true).include?("S") == false
-      puts "You won! 😸 🎉"
+      puts "You won! 😸 🎉\n"
+      
+      puts "Enter any key to play again, or q to quit."
+      print "> "
+      play_or_quit = gets.chomp
+      exit(true) if play_or_quit == "q"
+      
+      initialize
+      start_game
+      enter_first_coordinates
+      enter_second_coordinates
+      place_computer_ships
+      take_turns
     else
       take_turns
     end
