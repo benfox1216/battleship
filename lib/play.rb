@@ -30,6 +30,7 @@ class Play
     "The Cruiser is three units long and the Submarine is two units long.\n\n"
 
     @player_board.render
+    puts @player_board.board
     puts "\n"
   end
 
@@ -51,6 +52,7 @@ class Play
       puts "\n"
       puts "Your board:"
       @player_board.render(true)
+      puts @player_board.board
       puts "\n"
     end
   end
@@ -71,6 +73,7 @@ class Play
     else
       @player_board.place(@player_submarine, split_second_coordinates)
       @player_board.render(true)
+      puts @player_board.board
       puts "\n"
     end
   end
@@ -149,7 +152,6 @@ class Play
   end
 
   def end_game
-    require "pry"; binding.pry
     if @player_board.render(true).include?("S") == false
       puts "You lost. 😿"
     elsif @computer_board.render(true).include?("S") == false

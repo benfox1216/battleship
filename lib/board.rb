@@ -1,7 +1,7 @@
 require_relative '../lib/cell'
 
 class Board
-  attr_reader :cells
+  attr_reader :cells, :board
 
   def initialize
     @cells = {
@@ -21,6 +21,7 @@ class Board
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")}
+    @board = ""
   end
 
   def valid_coordinate?(coordinate)
@@ -112,14 +113,13 @@ class Board
       cell[1].show_ships = unhide_ships
     end
     
-    board =
+    @board =
     "  1 2 3 4 \n" +
     "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
     "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
     "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
     "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
 
-    puts board
     board
   end
 end

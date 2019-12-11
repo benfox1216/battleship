@@ -6,10 +6,12 @@ class Turn
   def render(computer_board, player_board)
     puts "==============PLAYER BOARD=============="
     player_board.render(true)
+    puts player_board.board
     puts "\n"
     
     puts "=============COMPUTER BOARD============="
     computer_board.render
+    puts computer_board.board
     puts "\n"
   end
 
