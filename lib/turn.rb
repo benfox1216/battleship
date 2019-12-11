@@ -3,13 +3,6 @@ require_relative '../lib/ship'
 require_relative '../lib/play'
 
 class Turn
-  attr_reader :computer_shots_taken, :player_shots_taken
-
-  def initialize
-    @computer_shots_taken = []
-    @player_shots_taken = []
-  end
-
   def render(computer_board, player_board)
     puts "==============PLAYER BOARD=============="
     player_board.render(true)
@@ -22,28 +15,26 @@ class Turn
 
   def player_take_shot(computer_board)
     shot = ""
-    
+
     loop do
       puts "Enter a valid coordinate to take your shot:"
       print "> "
-      
+
       shot = gets.chomp
       exit(true) if shot == "q"
-      
+
       shot_validation = computer_board.cells.find do |cell|
         cell[1].coordinate == shot
       end
-      
-      break if @player_shots_taken.include?(shot) == false && shot_validation != nil
-      
+
+      break if computer_board.cells[shot].fired_upon == false && shot_validation != nil
+
       puts "\n"
       puts "Those are invalid coordinates. Please try again:\n"
     end
-    
-    @player_shots_taken << shot
-    
+
     computer_board.cells[shot].fired_upon = true
-    
+
     if computer_board.cells[shot].render == "M"
       puts "Your shot on #{shot} missed!\n\n"
     else
@@ -58,10 +49,8 @@ class Turn
 
     loop do
       shot = possibilities.sample
-      break if @computer_shots_taken.include?(shot) == false
+      break if player_board.cells[shot].fired_upon == false
     end
-
-    @computer_shots_taken << shot
 
     player_board.cells[shot].fired_upon = true
 
