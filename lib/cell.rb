@@ -11,6 +11,7 @@ class Cell
   end
 
   def place_ship(ship)
+    @has_ship = true
     @ship = ship
   end
 
@@ -34,8 +35,8 @@ class Cell
     if @ship != nil
       @has_ship = true
     end
-    
-    return "X" if @has_ship == true && @ship.health == 0
+
+    return "X" if @has_ship == true && @ship.sunk?
     return "H" if @fired_upon == true && @has_ship == true
     return "M" if @fired_upon == true && @has_ship == false
 

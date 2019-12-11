@@ -13,7 +13,6 @@ class Play
     @player_submarine = Ship.new("Submarine", 2)
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_submarine = Ship.new("Submarine", 2)
-    @turn = Turn.new
   end
 
   def start_game
@@ -40,9 +39,9 @@ class Play
     enter_coordinates = gets.chomp
     exit(true) if enter_coordinates == "q"
     puts "\n"
-    
+
     split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
-    
+
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
       puts "Those are invalid coordinates. Please try again:\n"
       enter_first_coordinates
@@ -67,16 +66,22 @@ class Play
       return enter_second_coordinates
     else
       @player_board.place(@player_submarine, split_second_coordinates)
+      @player_board.render(true)
       puts "\n"
     end
   end
 
   def place_computer_ships
-    begin
+    computer_cruiser_input = []
+    computer_submarine_input = []
+
+    loop do
       computer_cruiser_input = random_placement_generator(3)
       computer_submarine_input = random_placement_generator(2)
-    rescue
-      retry if !@computer_board.valid_placement?(@computer_cruiser, computer_cruiser_input) || !@computer_board.valid_placement?(@computer_submarine, computer_submarine)
+
+      overlap = (computer_cruiser_input - computer_submarine_input).length == computer_cruiser_input.length
+
+      break if @computer_board.valid_placement?(@computer_cruiser, computer_cruiser_input) && @computer_board.valid_placement?(@computer_submarine, computer_submarine_input) && overlap
     end
       @computer_board.place(@computer_cruiser, computer_cruiser_input)
       @computer_board.place(@computer_submarine, computer_submarine_input)
@@ -129,17 +134,21 @@ class Play
   end
 
   def take_turn
-    @turn.render(@computer_board, @player_board)
-    @turn.computer_take_shot(@player_board)
-    @turn.player_take_shot(@computer_board)
+    new_turn = Turn.new
+
+    new_turn.player_take_shot(@computer_board)
+    new_turn.computer_take_shot(@player_board)
+    new_turn.render(@computer_board, @player_board)
+
+    end_game
   end
-  
+
   def end_game
     if @player_board.render(true).include?("S") == false
       puts "You lost. 😿"
     elsif @computer_board.render(true).include?("S") == false
       puts "You won! 😸 🎉"
+    else take_turn
     end
-    require "pry"; binding.pry
   end
 end
