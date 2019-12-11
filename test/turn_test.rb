@@ -11,7 +11,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exists
-    skip
     assert_instance_of Turn, @turn
   end
 
@@ -24,7 +23,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_computer_board_is_displayed_showing_only_hits_and_misses
-    skip
     @game.place_computer_ships
     assert_equal 0, @game.computer_board.render.count("S")
   end
@@ -42,7 +40,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_computer_does_not_fire_at_same_spot_twice
-    skip
     16.times do
       @turn.computer_take_shot(@game.player_board)
     end
@@ -51,17 +48,13 @@ class TurnTest < Minitest::Test
   end
 
   def test_player_can_choose_a_spot_to_fire
+    skip
     @game.enter_first_coordinates
     @game.enter_second_coordinates
     @game.place_computer_ships
     @turn.player_take_shot(@game.computer_board)
-    
-    assert_equal true, @game.computer_board.render.include?("M") || @game.computer_board.render.include?("H")
-  end
 
-  def test_player_is_informed_if_they_have_already_fired_on_a_coordinate
-    skip
-    refute_equal @game.player_take_shot, @game.player_take_shot
+    assert_equal true, @game.computer_board.render.include?("M") || @game.computer_board.render.include?("H")
   end
 
   def test_both_computer_and_player_shots_are_reported_correctly
