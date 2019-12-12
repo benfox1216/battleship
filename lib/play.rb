@@ -20,8 +20,8 @@ class Play
     "Enter any key to play. Enter q to quit at any time."
 
     print "> "
-    play_or_quit = gets.chomp
-    exit(true) if play_or_quit == "q"
+    play_or_quit = gets.chomp.upcase.upcase
+    exit(true) if play_or_quit == "Q"
 
     puts "\nLet's play!\n\n"
 
@@ -37,11 +37,11 @@ class Play
   def enter_first_coordinates
     puts "Enter 3 coordinates for the Cruiser (separated by spaces):"
     print "> "
-    
-    enter_coordinates = gets.chomp
-    exit(true) if enter_coordinates == "q"
+
+    enter_coordinates = gets.chomp.upcase
+    exit(true) if enter_coordinates == "Q"
     puts "\n"
-    
+
     split_first_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
     if @player_board.valid_placement?(@player_cruiser, split_first_coordinates) == false
@@ -61,10 +61,10 @@ class Play
     puts "Enter 2 coordinates for the Submarine (separated by spaces):"
     print "> "
 
-    enter_coordinates = gets.chomp
-    exit(true) if enter_coordinates == "q"
+    enter_coordinates = gets.chomp.upcase
+    exit(true) if enter_coordinates == "Q"
     puts "\n"
-    
+
     split_second_coordinates = enter_coordinates.tr(",.;:/'", " ").split
 
     if @player_board.valid_placement?(@player_submarine, split_second_coordinates) == false
@@ -90,7 +90,7 @@ class Play
 
       break if @computer_board.valid_placement?(@computer_cruiser, computer_cruiser_input) && @computer_board.valid_placement?(@computer_submarine, computer_submarine_input) && overlap
     end
-    
+
     @computer_board.place(@computer_cruiser, computer_cruiser_input)
     @computer_board.place(@computer_submarine, computer_submarine_input)
   end
@@ -143,23 +143,23 @@ class Play
 
   def take_turns
    new_turn = Turn.new
-   
+
    new_turn.player_take_shot(@computer_board)
    new_turn.computer_take_shot(@player_board)
    new_turn.render(@computer_board, @player_board)
-   
+
    end_game
   end
 
   def end_game
     if @player_board.render(true).include?("S") == false
       puts "You lost. 😿\n"
-      
+
       puts "Enter any key to play again, or q to quit."
       print "> "
-      play_or_quit = gets.chomp
-      exit(true) if play_or_quit == "q"
-      
+      play_or_quit = gets.chomp.upcase
+      exit(true) if play_or_quit == "Q"
+
       start_game
       initialize
       start_game
@@ -169,12 +169,12 @@ class Play
       take_turns
     elsif @computer_board.render(true).include?("S") == false
       puts "You won! 😸 🎉\n"
-      
+
       puts "Enter any key to play again, or q to quit."
       print "> "
-      play_or_quit = gets.chomp
-      exit(true) if play_or_quit == "q"
-      
+      play_or_quit = gets.chomp.upcase
+      exit(true) if play_or_quit == "Q"
+
       initialize
       start_game
       enter_first_coordinates
