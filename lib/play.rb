@@ -20,7 +20,7 @@ class Play
     "Enter any key to play. Enter q to quit at any time."
 
     print "> "
-    play_or_quit = gets.chomp.upcase.upcase
+    play_or_quit = gets.chomp.upcase
     exit(true) if play_or_quit == "Q"
 
     puts "\nLet's play!\n\n"
