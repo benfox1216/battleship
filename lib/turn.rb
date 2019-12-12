@@ -8,9 +8,9 @@ class Turn
     player_board.render(true)
     puts player_board.board
     puts "\n"
-    
+
     puts "=============COMPUTER BOARD============="
-    computer_board.render(true)
+    computer_board.render
     puts computer_board.board
     puts "\n"
   end
@@ -22,8 +22,8 @@ class Turn
       puts "Enter a coordinate to take your shot:"
       print "> "
 
-      shot = gets.chomp
-      exit(true) if shot == "q"
+      shot = gets.chomp.upcase
+      exit(true) if shot == "Q"
 
       shot_validation = computer_board.cells.find do |cell|
         cell[1].coordinate == shot
